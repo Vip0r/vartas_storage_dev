@@ -22,6 +22,19 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up VARTA Storage from a config entry."""
 
+    # Check for required options/fields for the new version
+    required_fields = ["scan_interval_modbus", "scan_interval_cgi", "host", "port", "username", "password"]
+    missing_fields = [field for field in required_fields if field not in entry.data]
+    if missing_fields:
+        LOGGER.error(
+            "VARTA Storage integration requires reconfiguration due to missing fields: %s. "
+            "Please reconfigure the integration in Home Assistant.",
+            ", ".join(missing_fields)
+        )
+        raise ConfigEntryNotReady(
+            f"Missing required fields: {', '.join(missing_fields)}. Please reconfigure the integration."
+        )
+
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
 
     scan_interval_modbus = timedelta(seconds=entry.data["scan_interval_modbus"])
