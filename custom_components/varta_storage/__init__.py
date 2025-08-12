@@ -27,7 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     if missing_fields:
         message = (
             f"VARTA Storage integration requires reconfiguration due to missing fields: {', '.join(missing_fields)}. "
-            "Please reconfigure the integration in Home Assistant."
+            "Please [reconfigure the integration](https://my.home-assistant.io/redirect/config_integrations/) in Home Assistant."
         )
         LOGGER.error(message)
         # Display notification in Home Assistant GUI
