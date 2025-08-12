@@ -36,7 +36,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 "persistent_notification",
                 "create",
                 {
-                    "title": "VARTA Storage Integration Needs Reconfiguration",
+                    "title": "VARTA Storage Integration Requires Reconfiguration",
                     "message": message,
                     "notification_id": "varta_storage_reconfigure",
                 },
