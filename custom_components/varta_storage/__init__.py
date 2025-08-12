@@ -22,7 +22,7 @@ PLATFORMS: list[Platform] = [Platform.SENSOR]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up VARTA Storage from a config entry."""
 
-    required_fields = ["testfield", "scan_interval_modbus", "scan_interval_cgi", "host", "host_cgi", "port", "username", "password"]
+    required_fields = ["scan_interval_modbus", "scan_interval_cgi", "host", "host_cgi", "port", "username", "password"]
     missing_fields = [field for field in required_fields if field not in entry.data]
     if missing_fields:
         message = (
